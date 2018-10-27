@@ -32,6 +32,8 @@ public class RepositoryManager extends AsyncTask<String, Void, String> {
                 RepositoryModel rm = new RepositoryModel();
                 rm.setName(jsonObj.get("name").toString());
                 rm.setDescription(jsonObj.get("description").toString());
+                if(rm.getDescription().equals("null"))
+                    rm.setDescription("Amazing project from JBoss in its early stage");
                 System.out.println(jsonObj.get("name"));
                 repolist.add(rm);
             }
