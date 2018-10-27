@@ -2,7 +2,7 @@
 This repository contains the code for JBoss Outreach Android app created for GCI_2018
 
 # Screenshots
-![alt text](https://github.com/RaghavAwasthi/JbossOutreach-Android/blob/master/ScreenShots/ScrrenShot1.jpeg)
+![alt text](https://github.com/RaghavAwasthi/JbossOutreach-Android/blob/master/ScreenShots/ScreenShot.jpeg)
 
 
 
