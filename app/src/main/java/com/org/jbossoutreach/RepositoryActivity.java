@@ -28,6 +28,5 @@ public class RepositoryActivity extends AppCompatActivity {
         mAdapter=new RepoListAdapter(new RepositoryManager().repositorynames());
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mAdapter);
-        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
-    }
+        }
 }
