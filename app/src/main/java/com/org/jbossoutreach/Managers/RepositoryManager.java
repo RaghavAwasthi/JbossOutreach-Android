@@ -1,6 +1,7 @@
 package com.org.jbossoutreach.Managers;
 
 import android.os.AsyncTask;
+import android.os.Environment;
 
 import com.org.jbossoutreach.Models.RepositoryModel;
 
@@ -13,7 +14,13 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 public class RepositoryManager extends AsyncTask<String, Void, String> {
+
+    String rootpath = Environment.getExternalStorageDirectory().getAbsolutePath();
+
     @Override
     protected String doInBackground(String... urlString) {
 
@@ -23,26 +30,41 @@ public class RepositoryManager extends AsyncTask<String, Void, String> {
 
     public ArrayList<RepositoryModel> repositorynames() {
         ArrayList<RepositoryModel> repolist = new ArrayList<>();
-        String url = "https://api.github.com/orgs/JBossOutreach/repos";
-        try {
-            String data = new RepositoryManager().execute(url).get();
-            JSONArray jsonArr = new JSONArray(data);
-            for (int i = 0; i < jsonArr.length(); i++) {
-                JSONObject jsonObj = jsonArr.getJSONObject(i);
-                RepositoryModel rm = new RepositoryModel();
-                rm.setName(jsonObj.get("name").toString());
-                rm.setDescription(jsonObj.get("description").toString());
-                if(rm.getDescription().equals("null"))
-                    rm.setDescription("Amazing project from JBoss in its early stage");
-                System.out.println(jsonObj.get("name"));
-                repolist.add(rm);
+        FileManager fm = new FileManager();
+        fm.setPath(rootpath + "/repo.json");
+        if (fm.fileexists()) {
+            String data = fm.readfile();
+            TypeToken<ArrayList<RepositoryModel>> token = new TypeToken<ArrayList<RepositoryModel>>() {
+            };
+            ArrayList<RepositoryModel> tmp = new Gson().fromJson(data, token.getType());
+            return tmp;
+        } else {
+
+
+            String url = "https://api.github.com/orgs/JBossOutreach/repos";
+            try {
+                String data = new RepositoryManager().execute(url).get();
+                JSONArray jsonArr = new JSONArray(data);
+                for (int i = 0; i < jsonArr.length(); i++) {
+                    JSONObject jsonObj = jsonArr.getJSONObject(i);
+                    RepositoryModel rm = new RepositoryModel();
+                    rm.setName(jsonObj.get("name").toString());
+                    rm.setDescription(jsonObj.get("description").toString());
+                    rm.setContributionurl(jsonObj.get("contributors_url").toString());
+                    rm.setCommitcount(Integer.parseInt(jsonObj.get("forks_count").toString()));
+                    if (rm.getDescription().equals("null"))
+                        rm.setDescription("Amazing project from JBoss in its early stage");
+
+                    repolist.add(rm);
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return repolist;
     }
-
 
     private String readUrl(String urlString) {
 
@@ -70,7 +92,59 @@ public class RepositoryManager extends AsyncTask<String, Void, String> {
         return tmp;
     }
 
-    public void getImageURL() {
+    public RepositoryModel gettopcontributor() {
+        int count = 0;
+        generatecontributorscache();
+        ArrayList<RepositoryModel> list = repositorynames();
+        RepositoryModel tmp = new RepositoryModel();
+        for (RepositoryModel data : list) {
+            if (count < data.getCommitcount()) {
+                tmp.setName(data.getName());
+                tmp.setCommitcount(data.getCommitcount());
+                tmp.setDescription(data.getDescription());
+                tmp.setContributionurl(data.getContributionurl());
+                tmp.setForkcunt(data.getForkcunt());
+            }
+
+
+        }
+
+
+        return tmp;
+    }
+
+    public void generatecontributorscache() {
+        ArrayList<RepositoryModel> repolist = new ArrayList<>();
+        String url = "https://api.github.com/orgs/JBossOutreach/repos";
+        try {
+            String data = new RepositoryManager().execute(url).get();
+            JSONArray jsonArr = new JSONArray(data);
+            for (int i = 0; i < jsonArr.length(); i++) {
+                JSONObject jsonObj = jsonArr.getJSONObject(i);
+                RepositoryModel rm = new RepositoryModel();
+                rm.setName(jsonObj.get("name").toString());
+                rm.setDescription(jsonObj.get("description").toString());
+                rm.setContributionurl(jsonObj.get("contributors_url").toString());
+                rm.setCommitcount(Integer.parseInt(jsonObj.get("forks_count").toString()));
+                if (rm.getDescription().equals("null"))
+                    rm.setDescription("Amazing project from JBoss in its early stage");
+
+                repolist.add(rm);
+            }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        FileManager fm = new FileManager();
+        fm.setPath(rootpath + "/repo.json");
+
+        Gson gs = new Gson();
+        TypeToken<ArrayList<RepositoryModel>> token = new TypeToken<ArrayList<RepositoryModel>>() {
+        };
+        String ar = gs.toJson(repolist, token.getType());
+        fm.writetofile(ar);
 
     }
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/twotone_dashboard_black_18"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_repositories"
+            android:icon="@drawable/repositoryicon"
+            android:title="Repositories" />
+
+        <item
+            android:id="@+id/nav_mentors"
+            android:icon="@drawable/twotone_supervisor_account_black_18"
+            android:title="Mentors" />
+        <item
+            android:id="@+id/nav_students"
+            android:icon="@drawable/studenticon"
+            android:title="Students" />
+    </group>
+
+    <item android:title="References">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/libraryicon"
+                android:title="Libraries" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Contribution Guidelines" />
+
+        </menu>
+    </item>
+
+</menu>

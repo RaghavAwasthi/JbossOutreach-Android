@@ -1,8 +1,30 @@
 package com.org.jbossoutreach.Models;
 
 public class RepositoryModel {
-    private String name,description;
+     String name;
+     String description;
+
+    public RepositoryModel() {
+    }
+
+    String contributionurl;
     int commitcount,forkcunt;
+
+    public String getContributionurl() {
+        return contributionurl;
+    }
+
+    public void setContributionurl(String contributionurl) {
+        this.contributionurl = contributionurl;
+    }
+
+    public RepositoryModel(String name, String description, String contributionurl, int commitcount, int forkcunt) {
+        this.name = name;
+        this.description = description;
+        this.contributionurl = contributionurl;
+        this.commitcount = commitcount;
+        this.forkcunt = forkcunt;
+    }
 
     public String getName() {
         return name;

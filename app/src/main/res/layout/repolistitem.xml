@@ -9,45 +9,45 @@
     app:cardElevation="5dp"
     app:cardUseCompatPadding="true">
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingTop="5dp"
-    android:paddingBottom="12dp"
-    android:orientation="vertical">
-
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="50dp"
-            android:id="@+id/repoimage"
-            android:layout_height="50dp" />
+        android:layout_height="80dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="12dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/reponame"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="50dp"
+                android:id="@+id/repoimage"
+                android:layout_height="50dp" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
-                app:textAllCaps="true"
-                android:text="@string/Repo"
-                android:textColor="@android:color/black" />
+                android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/repodescriptor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="12dp"
-                android:text="@string/Repo" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/reponame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    app:textAllCaps="true"
+                    android:text="@string/Repo"
+                    android:textColor="@android:color/black" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/repodescriptor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="12dp"
+                    android:text="@string/Repo" />
+            </LinearLayout>
+
         </LinearLayout>
-
     </LinearLayout>
-</LinearLayout>
 </com.google.android.material.card.MaterialCardView>

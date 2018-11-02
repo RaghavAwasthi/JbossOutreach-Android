@@ -3,15 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="2dp">
+    android:paddingLeft="4dp">
+
 
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
-
-</LinearLayout>
+        android:paddingLeft="5dp"
+        android:layoutAnimation="@anim/layout_animation_fall_down"/>
+   </LinearLayout>

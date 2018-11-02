@@ -18,7 +18,11 @@ public class LandingActivity extends AppCompatActivity {
         if (!permissionManager.permissionStatus(Manifest.permission.INTERNET)) {
             permissionManager.requestPermission(256, Manifest.permission.INTERNET);
         }
-        Intent i =new Intent(LandingActivity.this,RepositoryActivity.class);
+        if (!permissionManager.permissionStatus(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+            permissionManager.requestPermission(259, Manifest.permission.INTERNET);
+        }
+        Intent i =new Intent(LandingActivity.this,MainActivity.class);
         startActivity(i);
+        finish();
     }
 }
