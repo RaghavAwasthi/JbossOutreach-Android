@@ -13,7 +13,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class ContributionManager  extends AsyncTask<String, Void, String> {
+public class ContributionManager extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... urlString) {
 
@@ -69,25 +69,25 @@ public class ContributionManager  extends AsyncTask<String, Void, String> {
         return tmp;
     }
 
-    public ContributionModel gettopcontributor(String url) {
-        int count = 0;
+    public ArrayList<ContributionModel> gettopcontributor(String url) {
+
         ArrayList<ContributionModel> list = contributornames(url);
-        ContributionModel tmp = new ContributionModel();
-        for (ContributionModel data : list) {
-            if (count < data.getContributions()) {
-                tmp.setName(data.getName());
-                tmp.setAvatar(data.getAvatar());
-                tmp.setContributions(data.getContributions());
-            }
+
+        int n = list.size();
+        for (int i = 0; i < n - 1; i++)
+            for (int j = 0; j < n - i - 1; j++)
+                if (list.get(j).getContributions() > list.get(j + 1).getContributions()) {
+                    ContributionModel tmp;
+                    // swap tmp
+                    tmp = list.get(j);
+                    list.set(j, list.get(j + 1));
+                    list.set(j + 1, tmp);
+
+                }
 
 
-        }
-
-
-        return tmp;
+        return list;
     }
-
-
 
 
 }

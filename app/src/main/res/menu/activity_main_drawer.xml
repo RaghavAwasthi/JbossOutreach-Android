@@ -21,6 +21,11 @@
             android:id="@+id/nav_students"
             android:icon="@drawable/studenticon"
             android:title="Students" />
+        <item
+            android:id="@+id/nav_chat"
+            android:icon="@drawable/round_forum_black_48dp"
+            android:title="Chat" />
+
     </group>
 
     <item android:title="References">

@@ -32,36 +32,36 @@ public class RepositoryManager extends AsyncTask<String, Void, String> {
         ArrayList<RepositoryModel> repolist = new ArrayList<>();
         FileManager fm = new FileManager();
         fm.setPath(rootpath + "/repo.json");
-        if (fm.fileexists()) {
-            String data = fm.readfile();
-            TypeToken<ArrayList<RepositoryModel>> token = new TypeToken<ArrayList<RepositoryModel>>() {
-            };
-            ArrayList<RepositoryModel> tmp = new Gson().fromJson(data, token.getType());
-            return tmp;
-        } else {
+        //if (fm.fileexists()) {
+        //  String data = fm.readfile();
+        //TypeToken<ArrayList<RepositoryModel>> token = new TypeToken<ArrayList<RepositoryModel>>() {
+        //};
+        //ArrayList<RepositoryModel> tmp = new Gson().fromJson(data, token.getType());
+        //return tmp;
+        //} else {
 
 
-            String url = "https://api.github.com/orgs/JBossOutreach/repos";
-            try {
-                String data = new RepositoryManager().execute(url).get();
-                JSONArray jsonArr = new JSONArray(data);
-                for (int i = 0; i < jsonArr.length(); i++) {
-                    JSONObject jsonObj = jsonArr.getJSONObject(i);
-                    RepositoryModel rm = new RepositoryModel();
-                    rm.setName(jsonObj.get("name").toString());
-                    rm.setDescription(jsonObj.get("description").toString());
-                    rm.setContributionurl(jsonObj.get("contributors_url").toString());
-                    rm.setCommitcount(Integer.parseInt(jsonObj.get("forks_count").toString()));
-                    if (rm.getDescription().equals("null"))
-                        rm.setDescription("Amazing project from JBoss in its early stage");
+        String url = "https://api.github.com/orgs/JBossOutreach/repos";
+        try {
+            String data = new RepositoryManager().execute(url).get();
+            JSONArray jsonArr = new JSONArray(data);
+            for (int i = 0; i < jsonArr.length(); i++) {
+                JSONObject jsonObj = jsonArr.getJSONObject(i);
+                RepositoryModel rm = new RepositoryModel();
+                rm.setName(jsonObj.get("name").toString());
+                rm.setDescription(jsonObj.get("description").toString());
+                rm.setContributionurl(jsonObj.get("contributors_url").toString());
+                rm.setCommitcount(Integer.parseInt(jsonObj.get("forks_count").toString()));
+                if (rm.getDescription().equals("null"))
+                    rm.setDescription("Amazing project from JBoss in its early stage");
 
-                    repolist.add(rm);
-                }
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
+                repolist.add(rm);
             }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            //  }
         }
         return repolist;
     }
@@ -97,16 +97,18 @@ public class RepositoryManager extends AsyncTask<String, Void, String> {
         generatecontributorscache();
         ArrayList<RepositoryModel> list = repositorynames();
         RepositoryModel tmp = new RepositoryModel();
-        for (RepositoryModel data : list) {
-            if (count < data.getCommitcount()) {
-                tmp.setName(data.getName());
-                tmp.setCommitcount(data.getCommitcount());
-                tmp.setDescription(data.getDescription());
-                tmp.setContributionurl(data.getContributionurl());
-                tmp.setForkcunt(data.getForkcunt());
+        if (list != null) {
+            for (RepositoryModel data : list) {
+                if (count < data.getCommitcount()) {
+                    tmp.setName(data.getName());
+                    tmp.setCommitcount(data.getCommitcount());
+                    tmp.setDescription(data.getDescription());
+                    tmp.setContributionurl(data.getContributionurl());
+                    tmp.setForkcunt(data.getForkcunt());
+                }
+
+
             }
-
-
         }
 
 

@@ -21,15 +21,20 @@
         <activity
             android:name=".RepositoryActivity"
             android:label="List of Repositories"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".chat.MessageActivity"
+            android:label="Jboss-GroupChat"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ContributionActivity"
             android:label="List of Contributors"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AddUserActivity"></activity>
     </application>
 
 </manifest>
