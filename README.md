@@ -1,9 +1,6 @@
 # JbossOutreach-Android
 This repository contains the code for JBoss Outreach Android app created for GCI_2018
 
-# Screenshots (OUTDATED)
-This video is from a previous version.
-![alt text](https://github.com/RaghavAwasthi/JbossOutreach-Android/blob/master/SampleVideo/Sample.gif)
 
 
 
