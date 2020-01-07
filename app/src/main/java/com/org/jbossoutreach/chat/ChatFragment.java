@@ -78,6 +78,7 @@ public class ChatFragment extends Fragment {
 
         // Initialize Firebase components
         mFirebaseDatabase = FirebaseDatabase.getInstance();
+        mFirebaseDatabase.setPersistenceEnabled(true);
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseStorage = FirebaseStorage.getInstance();
 
