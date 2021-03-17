@@ -157,7 +157,7 @@ class ChatFragment : Fragment() {
                 override fun onChildMoved(dataSnapshot: DataSnapshot, s: String?) {}
                 override fun onCancelled(databaseError: DatabaseError) {}
             }
-            mMessagesDatabaseReference!!.addChildEventListener(mChildEventListener)
+            mMessagesDatabaseReference!!.addChildEventListener(mChildEventListener as ChildEventListener)
         }
     }
 
