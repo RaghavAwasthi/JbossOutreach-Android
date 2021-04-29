@@ -1,0 +1,49 @@
+version: 2
+updates:
+- package-ecosystem: gradle
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 99
+  ignore:
+  - dependency-name: androidx.constraintlayout:constraintlayout
+    versions:
+    - 2.1.0-alpha2
+    - 2.1.0-beta01
+  - dependency-name: com.google.firebase:firebase-database
+    versions:
+    - 19.6.0
+    - 19.7.0
+  - dependency-name: com.google.firebase:firebase-auth
+    versions:
+    - 20.0.2
+    - 20.0.3
+  - dependency-name: junit:junit
+    versions:
+    - 4.13.1
+    - 4.13.2
+  - dependency-name: com.google.android.material:material
+    versions:
+    - 1.2.1
+    - 1.3.0
+  - dependency-name: com.android.tools.build:gradle
+    versions:
+    - 4.1.2
+  - dependency-name: com.google.firebase:firebase-storage
+    versions:
+    - 19.2.1
+  - dependency-name: com.firebaseui:firebase-ui-auth
+    versions:
+    - 7.1.1
+  - dependency-name: com.google.android.gms:play-services-auth
+    versions:
+    - 19.0.0
+  - dependency-name: com.squareup.okhttp3:okhttp
+    versions:
+    - 4.9.0
+  - dependency-name: androidx.test:runner
+    versions:
+    - 1.3.0
+  - dependency-name: androidx.test.espresso:espresso-core
+    versions:
+    - 3.3.0
